@@ -70,6 +70,8 @@ body {
 
 /* line 6, ../sass/space.sass */
 #sun {
+  position: absolute;
+  right: 0;
   width: 300px;
   height: 300px;
   border-radius: 150px;
@@ -78,7 +80,7 @@ body {
   margin: 30px;
 }
 
-/* line 14, ../sass/space.sass */
+/* line 16, ../sass/space.sass */
 h1 {
   font-family: "Ubuntu", sans-serif;
   font-size: 144px;
