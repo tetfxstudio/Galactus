@@ -67,3 +67,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 body {
   background: black;
 }
+
+/* line 6, ../sass/space.sass */
+canvas {
+  border: 3px solid white;
+}
