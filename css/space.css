@@ -82,13 +82,14 @@ body {
 
 /* line 16, ../sass/space.sass */
 .star {
-  text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+  /* text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de */
   color: white;
   font-size: 20px;
   position: absolute;
+  z-index: -2;
 }
 
-/* line 22, ../sass/space.sass */
+/* line 23, ../sass/space.sass */
 h1 {
   font-family: "Ubuntu", sans-serif;
   font-size: 144px;
