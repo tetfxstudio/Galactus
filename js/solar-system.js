@@ -74,9 +74,18 @@ function solarSystem() {
   // the SUN
   createGravity(1,Math.random()*40+40,space_width/2,space_height/2,b2Body.b2_staticBody);
 
-  document.addEventListener("mousedown",function(e){
-    createMassless(e.pageX-canvasPosition.x,e.pageY-canvasPosition.y,b2Body.b2_dynamicBody);
-  });
+  function createPlanet(start_x,start_y,force_x,force_y) {
+    createMassless(
+      canvasPosition.x + start_x,
+      canvasPosition.y + start_y,
+      b2Body.b2_dynamicBody
+      );
+
+    massless_bodies[massless_bodies.length].ApplyForce(
+      new b2Vec2(force_x,force_y),
+      massless_bodies.length[massless_bodies.length].GetWorldCenter()
+      );
+  }
   
   function debugDraw(){
     var debugDraw = new b2DebugDraw();
