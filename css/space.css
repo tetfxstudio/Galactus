@@ -92,9 +92,12 @@ body {
 /* line 23, ../sass/space.sass */
 canvas {
   border: 3px solid white;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-/* line 26, ../sass/space.sass */
+/* line 29, ../sass/space.sass */
 h1 {
   font-family: "Ubuntu", sans-serif;
   font-size: 144px;
@@ -102,9 +105,12 @@ h1 {
   text-align: center;
   text-transform: uppercase;
   text-shadow: 0px 3px 0px #b2a98f, 0px 14px 10px rgba(255, 255, 255, 0.15), 0px 16px 2px rgba(255, 255, 255, 0.1), 0px 24px 30px rgba(255, 255, 255, 0.1);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-/* line 34, ../sass/space.sass */
+/* line 40, ../sass/space.sass */
 form {
   z-index: 2;
   font-family: sans-serif;
@@ -112,21 +118,21 @@ form {
   left: 820px;
   top: 140px;
 }
-/* line 40, ../sass/space.sass */
+/* line 46, ../sass/space.sass */
 form label {
   float: right;
   clear: right;
   color: white;
   text-shadow: 0 3px 8px black, 0 1px 0 black;
 }
-/* line 45, ../sass/space.sass */
+/* line 51, ../sass/space.sass */
 form input {
   text-align: center;
   font-size: 24px;
   padding: 10px;
   width: 80px;
 }
-/* line 50, ../sass/space.sass */
+/* line 56, ../sass/space.sass */
 form button {
   margin-top: 15px;
   font-size: 22px;
