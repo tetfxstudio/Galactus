@@ -103,3 +103,31 @@ h1 {
   text-transform: uppercase;
   text-shadow: 0px 3px 0px #b2a98f, 0px 14px 10px rgba(255, 255, 255, 0.15), 0px 16px 2px rgba(255, 255, 255, 0.1), 0px 24px 30px rgba(255, 255, 255, 0.1);
 }
+
+/* line 34, ../sass/space.sass */
+form {
+  font-family: sans-serif;
+  position: absolute;
+  left: 670px;
+  top: 30px;
+}
+/* line 39, ../sass/space.sass */
+form label {
+  float: right;
+  clear: right;
+  color: white;
+}
+/* line 43, ../sass/space.sass */
+form input {
+  text-align: center;
+  font-size: 24px;
+  padding: 10px;
+  width: 80px;
+}
+/* line 48, ../sass/space.sass */
+form button {
+  margin-top: 15px;
+  font-size: 22px;
+  float: right;
+  clear: right;
+}
