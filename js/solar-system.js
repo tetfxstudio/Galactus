@@ -5,6 +5,7 @@ function solarSystem() {
 
   // some of this from 
   // http://www.emanueleferonato.com/2012/12/03/introducing-box2dweb-create-box2d-projects-in-html5/
+  // http://www.emanueleferonato.com/2012/03/28/simulate-radial-gravity-also-know-as-planet-gravity-with-box2d-as-seen-on-angry-birds-space/
 
   var b2Vec2 = Box2D.Common.Math.b2Vec2;
   var b2AABB = Box2D.Collision.b2AABB;
@@ -21,9 +22,11 @@ function solarSystem() {
   
   var world = new b2World(new b2Vec2(0, 0),true);
   var gravity_bodies = [];
+  var massless_bodies = [];
   var canvasPosition = getElementPosition(document.getElementById("space"));
 
-  function addGravityBody(radius,mass,pX,pY,type) {
+  // a sun and/or suns
+  function createGravity(radius,mass,pX,pY,type) {
 
     var bodyDef = new b2BodyDef;
     bodyDef.type = type;
@@ -42,33 +45,38 @@ function solarSystem() {
     gravity_bodies.push(body)
 
   }
-  
-  debugDraw();            
-  window.setInterval(update,1000/60);
-  
-  createBox(space_width,30,space_width/2,space_height,b2Body.b2_staticBody);
-  createBox(space_width,30,space_width/2,0,b2Body.b2_staticBody);
-  createBox(30,space_height,0,space_height/2,b2Body.b2_staticBody);
-  createBox(30,space_height,space_width,space_height/2,b2Body.b2_staticBody);
-  
-  document.addEventListener("mousedown",function(e){
-    addGravityBody(Math.random()*4+1,Math.random()*40+40,e.clientX-canvasPosition.x,e.clientY-canvasPosition.y,b2Body.b2_dynamicBody);
-  });
-  
-  function createBox(width,height,pX,pY,type){
+
+  // planets (are relatively massless)
+  function createMassless(pX,pY,type) {
+
+    var radius = 1;
+
     var bodyDef = new b2BodyDef;
     bodyDef.type = type;
     bodyDef.position.Set(pX/worldScale,pY/worldScale);
-    var polygonShape = new b2PolygonShape;
-    polygonShape.SetAsBox(width/2/worldScale,height/2/worldScale);
+
+    var circleShape = new b2CircleShape(radius);
+
     var fixtureDef = new b2FixtureDef;
-    fixtureDef.density = 1.0;
-    fixtureDef.friction = 0.5;
-    fixtureDef.restitution = 0.5;
-    fixtureDef.shape = polygonShape;
+    fixtureDef.density = 1/(radius * (3.1415 ^ 2));
+    fixtureDef.friction = 1;
+    fixtureDef.restitution = 0;
+    fixtureDef.shape = circleShape;
+
     var body=world.CreateBody(bodyDef);
     body.CreateFixture(fixtureDef);
+    massless_bodies.push(body)
   }
+  
+  debugDraw();            
+  window.setInterval(update,600/60);
+  
+  // the SUN
+  createGravity(1,Math.random()*40+40,space_width/2,space_height/2,b2Body.b2_staticBody);
+
+  document.addEventListener("mousedown",function(e){
+    createMassless(e.pageX-canvasPosition.x,e.pageY-canvasPosition.y,b2Body.b2_dynamicBody);
+  });
   
   function debugDraw(){
     var debugDraw = new b2DebugDraw();
@@ -81,9 +89,30 @@ function solarSystem() {
   }
   
   function update() {
-    world.Step(1/60,10,10);
-    world.DrawDebugData();
+    world.Step(6000,10,10);
     world.ClearForces();
+    for (var i = 0; i < massless_bodies.length; i++) {
+      var massless_pos = massless_bodies[i].GetWorldCenter();
+      for (var j = 0; j < gravity_bodies.length; j++) {
+
+        // treat radius as linear in mass
+        var gravity_body_radius = gravity_bodies[j].GetFixtureList().GetShape().GetRadius();
+        var gravity_body_pos = gravity_bodies[j].GetWorldCenter();
+
+        var gravity_body_distance_vec = new b2Vec2(0,0);
+        gravity_body_distance_vec.Add(massless_pos);
+        gravity_body_distance_vec.Subtract(gravity_body_pos);
+        var gravity_body_distance = gravity_body_distance_vec.Length();
+
+        gravity_vec = gravity_body_distance_vec.GetNegative(); 
+        gravity_magnitude = 0.00000001 * gravity_body_radius / ((gravity_body_distance) ^ 2);
+
+        gravity_vec.Multiply(gravity_magnitude);
+        
+        massless_bodies[i].ApplyForce(gravity_vec,massless_bodies[i].GetWorldCenter());
+      }
+    }
+    world.DrawDebugData();
   };
   
   //http://js-tut.aardon.de/js-tut/tutorial/position.html
