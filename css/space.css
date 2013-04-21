@@ -106,25 +106,27 @@ h1 {
 
 /* line 34, ../sass/space.sass */
 form {
+  z-index: 2;
   font-family: sans-serif;
   position: absolute;
-  left: 670px;
-  top: 30px;
+  left: 820px;
+  top: 140px;
 }
-/* line 39, ../sass/space.sass */
+/* line 40, ../sass/space.sass */
 form label {
   float: right;
   clear: right;
   color: white;
+  text-shadow: 0 3px 8px black, 0 1px 0 black;
 }
-/* line 43, ../sass/space.sass */
+/* line 45, ../sass/space.sass */
 form input {
   text-align: center;
   font-size: 24px;
   padding: 10px;
   width: 80px;
 }
-/* line 48, ../sass/space.sass */
+/* line 50, ../sass/space.sass */
 form button {
   margin-top: 15px;
   font-size: 22px;
