@@ -10,6 +10,26 @@
 
   </head>
 
+  <form action="" id="vector">
+    <label>Starting X
+      <input id="startX" type="number" min=0 step=1 />
+    </label>
+
+    <label>Starting Y
+      <input id="startY" type="number" min=0 step=1 />
+    </label>
+    
+    <label>Vector X
+      <input id="vectorX" type="number" min=0 step=1 />
+    </label>
+
+    <label>Vector Y
+      <input id="vectorY" type="number" min=0 step=1 />
+    </label>
+
+    <button id="fire">Fire planet!</button>
+  </form>
+
   <body onload="solarSystem();">
     <canvas id="space" width=640 height=480></canvas>
   </body>

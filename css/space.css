@@ -72,3 +72,31 @@ body {
 canvas {
   border: 3px solid white;
 }
+
+/* line 9, ../sass/space.sass */
+form {
+  font-family: sans-serif;
+  position: absolute;
+  left: 670px;
+  top: 30px;
+}
+/* line 14, ../sass/space.sass */
+form label {
+  float: right;
+  clear: right;
+  color: white;
+}
+/* line 18, ../sass/space.sass */
+form input {
+  text-align: center;
+  font-size: 24px;
+  padding: 10px;
+  width: 80px;
+}
+/* line 23, ../sass/space.sass */
+form button {
+  margin-top: 15px;
+  font-size: 22px;
+  float: right;
+  clear: right;
+}
