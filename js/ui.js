@@ -8,4 +8,12 @@ $(function(){
 			fontSize: Math.floor(Math.random()*30+20)
 		}));
 	}
+
+	$("#vector").submit(function(evt){
+		var form = evt.currentTarget;
+
+		console.log(evt);
+		evt.preventDefault();
+
+	})
 });
