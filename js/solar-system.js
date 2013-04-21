@@ -1,4 +1,10 @@
-function solarSystem() {
+var milkyWay;
+
+$(function() {
+
+var solarSystem = (function() {
+
+  var solarSystem = function() {};
 
   space_width = 640;
   space_height = 480;
@@ -74,19 +80,6 @@ function solarSystem() {
   // the SUN
   createGravity(1,Math.random()*40+40,space_width/2,space_height/2,b2Body.b2_staticBody);
 
-  function createPlanet(start_x,start_y,force_x,force_y) {
-    createMassless(
-      canvasPosition.x + start_x,
-      canvasPosition.y + start_y,
-      b2Body.b2_dynamicBody
-      );
-
-    massless_bodies[massless_bodies.length].ApplyForce(
-      new b2Vec2(force_x,force_y),
-      massless_bodies.length[massless_bodies.length].GetWorldCenter()
-      );
-  }
-  
   function debugDraw(){
     var debugDraw = new b2DebugDraw();
     debugDraw.SetSprite(document.getElementById("space").getContext("2d"));
@@ -124,6 +117,25 @@ function solarSystem() {
     world.DrawDebugData();
   };
   
+  solarSystem.prototype = {
+    createPlanet: function(start_x,start_y,force_x,force_y) {
+      createMassless(
+        canvasPosition.x + start_x,
+        canvasPosition.y + start_y,
+        b2Body.b2_dynamicBody
+      );
+
+      massless_bodies[massless_bodies.length-1].ApplyForce(
+        new b2Vec2(force_x,force_y),
+        massless_bodies[massless_bodies.length-1].GetWorldCenter()
+      );
+    }
+  }
+
+  return solarSystem;
+
+})();
+
   //http://js-tut.aardon.de/js-tut/tutorial/position.html
   function getElementPosition(element) {
     var elem=element, tagname="", x=0, y=0;
@@ -143,5 +155,5 @@ function solarSystem() {
     return {x: x, y: y};
   }
 
-};
-
+  milkyWay = new solarSystem();
+});

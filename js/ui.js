@@ -12,8 +12,9 @@ $(function(){
 	$("#vector").submit(function(evt){
 		var form = evt.currentTarget;
 
-		console.log(evt);
 		evt.preventDefault();
+
+		milkyWay.createPlanet(form.startX, form.startY, form.vectorX, form.vectorY);
 
 	})
 });
