@@ -65,22 +65,30 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 /* line 3, ../sass/space.sass */
 body {
-  background: url('../img/visit-space.jpg?1366497366') black;
+  background-color: black;
+  /* background: image-url("visit-space.jpg") black */
 }
 
-/* line 6, ../sass/space.sass */
+/* line 7, ../sass/space.sass */
 #sun {
-  position: absolute;
-  right: 0;
+  position: fixed;
+  right: 50px;
   width: 300px;
   height: 300px;
   border-radius: 150px;
   background-color: #feec85;
   box-shadow: 0 0 20px #fefcc9, 10px -5px 30px #feec85, -20px -10px 40px #ffae34, 20px -20px 50px #ec760c, -20px -30px 60px #cd4606, 0 -40px 70px #973716, 10px -45px 80px #451b0e;
-  margin: 30px;
 }
 
 /* line 16, ../sass/space.sass */
+.star {
+  text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+}
+
+/* line 22, ../sass/space.sass */
 h1 {
   font-family: "Ubuntu", sans-serif;
   font-size: 144px;
